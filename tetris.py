@@ -111,10 +111,14 @@ class Figure:
         self.x += 1
         self.draw(screen, self.color)
 
+    def rotate_form(self, forma):
+	    return [ [ forma[y][x]
+		    	for y in range(len(forma)) ]
+                    for x in range(len(forma[0]) - 1, -1, -1) ]
+
     def rotate(self, field):
         self.draw(field, BLACK)
-        self.turn = (self.turn + 1) % len(self.forms)
-        self.form = self.forms[self.turn]
+        self.form = self.rotate_form(self.form)
         self.draw(field, self.color)
 
     def to_map(self, field):
